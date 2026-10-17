@@ -1,0 +1,279 @@
+/* ============================================
+   ChemLab 3D — Starbucks-Inspired Design System
+   Green palette, warm cream canvas, pill buttons
+   ============================================ */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  /* Four-Tier Green */
+  --color-brand:       #006241;       /* Starbucks Green — headings, brand */
+  --color-accent:      #00754A;       /* Green Accent — CTAs, links, active */
+  --color-house:       #1E3932;       /* House Green — feature bands, footer */
+  --color-uplift:      #2b5148;       /* Green Uplift — decorative */
+  --color-green-light: #d4e9e2;       /* Pale mint — success/valid tints */
+
+  /* Surfaces */
+  --color-canvas:       #f2f0eb;      /* Neutral Warm — primary page canvas */
+  --color-ceramic:      #edebe9;      /* Slightly darker cream — zone separators */
+  --color-white:        #ffffff;      /* Card & modal surface */
+  --color-neutral-cool: #f9f9f9;      /* Dropdown menus, utility containers */
+
+  /* Text */
+  --color-text:             rgba(0, 0, 0, 0.87);
+  --color-text-soft:        rgba(0, 0, 0, 0.58);
+  --color-text-white:       rgba(255, 255, 255, 1);
+  --color-text-white-soft:  rgba(255, 255, 255, 0.70);
+
+  /* Rewards Gold — use only for XP/level ceremony */
+  --color-gold:         #cba258;
+  --color-gold-light:   #dfc49d;
+  --color-gold-lightest: #faf6ee;
+
+  /* Semantic */
+  --color-error:   #c82014;
+  --color-warning: #fbbc05;
+  --color-border:  #d6dbde;
+
+  /* Layout Widths — full-bleed friendly page shell */
+  --page-max:      1760px;   /* Wide pages: grids, dashboards, tables */
+  --page-max-mid:  1440px;   /* Medium pages: lists, detail + sidebar */
+  --page-max-text: 1100px;   /* Reading-width pages: articles, forms */
+  --page-gutter:   40px;     /* Horizontal breathing room */
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 40px;
+  --space-7: 48px;
+  --space-8: 56px;
+  --space-9: 64px;
+
+  /* Border Radius */
+  --radius-btn:   50px;   /* Full pill — universal for all buttons */
+  --radius-card:  12px;
+  --radius-input:  8px;
+
+  /* Shadows */
+  --shadow-card:       0 0 0.5px rgba(0,0,0,0.14), 0 1px 1px rgba(0,0,0,0.24);
+  --shadow-card-hover: 0 4px 16px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06);
+  --shadow-nav:        0 1px 3px rgba(0,0,0,0.1), 0 2px 2px rgba(0,0,0,0.06), 0 0 2px rgba(0,0,0,0.07);
+  --shadow-fab:        0 0 6px rgba(0,0,0,0.24), 0 8px 12px rgba(0,0,0,0.14);
+  --shadow-modal:      0 8px 40px rgba(0,0,0,0.18);
+
+  /* Typography */
+  --letter-spacing: -0.01em;
+  --transition: 0.2s ease;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text);
+  letter-spacing: var(--letter-spacing);
+}
+
+body {
+  background-color: var(--color-canvas);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover { color: var(--color-brand); }
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: var(--space-5) var(--page-gutter);
+}
+
+@media (max-width: 1024px) {
+  .container { padding: var(--space-5) var(--space-4); }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 20px var(--space-3); }
+}
+
+.page-title {
+  margin-bottom: var(--space-2);
+  color: var(--color-brand);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: var(--letter-spacing);
+}
+
+.page-subtitle {
+  color: var(--color-text-soft);
+  font-size: 1rem;
+  margin-bottom: 28px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-4);
+}
+
+@media (max-width: 480px) {
+  .card-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Utilities ---------- */
+.full-width  { width: 100%; }
+.text-center { text-align: center; }
+
+.mt-8  { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mb-8  { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+
+/* ---------- Material Card Override ---------- */
+.mat-mdc-card {
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: box-shadow var(--transition), transform var(--transition) !important;
+  border: none !important;
+  background-color: var(--color-white) !important;
+}
+
+.mat-mdc-card:hover {
+  box-shadow: var(--shadow-card-hover) !important;
+}
+
+/* ---------- Material Button Override ---------- */
+.mat-mdc-raised-button,
+.mat-mdc-flat-button,
+.mat-mdc-outlined-button {
+  border-radius: var(--radius-btn) !important;
+  font-weight: 600 !important;
+  letter-spacing: var(--letter-spacing) !important;
+  transition: all var(--transition) !important;
+}
+
+.mat-mdc-raised-button:active,
+.mat-mdc-flat-button:active,
+.mat-mdc-outlined-button:active {
+  transform: scale(0.95) !important;
+}
+
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-flat-button.mat-primary {
+  background-color: var(--color-accent) !important;
+  color: var(--color-white) !important;
+}
+
+.mat-mdc-outlined-button.mat-primary {
+  color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+}
+
+/* ---------- Material Form Field Override ---------- */
+.mat-mdc-form-field {
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: var(--color-border) !important;
+  }
+
+  &.mat-focused {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: var(--color-accent) !important;
+      border-width: 2px !important;
+    }
+  }
+}
+
+.mat-mdc-text-field-wrapper {
+  border-radius: var(--radius-input) !important;
+}
+
+/* ---------- Material Chip Override ---------- */
+.mat-mdc-chip {
+  border-radius: 50px !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  letter-spacing: var(--letter-spacing) !important;
+}
+
+/* ---------- Molecule Viewer ---------- */
+.viewer-container {
+  width: 100%;
+  height: 500px;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: #0f172a;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: #888; }
+
+/* ---------- Snackbar Override ---------- */
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  border-radius: var(--radius-card) !important;
+  background-color: var(--color-house) !important;
+}
+
+.mat-mdc-snack-bar-container.snack-warn .mdc-snackbar__surface {
+  background-color: #8a5a00 !important;
+}
+
+/* ---------- Page Transitions (router withViewTransitions) ---------- */
+/* Noi dung cu mo + truot nhe len, noi dung moi hien tu duoi len; navbar dung yen. */
+::view-transition-old(root) {
+  animation: vt-fade-out 160ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(root) {
+  animation: vt-fade-in 240ms cubic-bezier(0, 0, 0.2, 1) 60ms both;
+}
+
+::view-transition-group(app-navbar) {
+  animation: none;
+  z-index: 10;
+}
+
+@keyframes vt-fade-out {
+  to { opacity: 0; transform: translateY(-6px); }
+}
+
+@keyframes vt-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
