@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard, guestGuard } from './guards/auth.guard';
+import { roleGuard } from './guards/role.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -62,6 +63,27 @@ export const routes: Routes = [
     path: 'recommendations',
     loadComponent: () => import('./pages/recommendations/recommendations.component').then(m => m.RecommendationsComponent),
     canActivate: [authGuard]
+  },
+  {
+    path: 'exams',
+    loadComponent: () => import('./pages/exam-list/exam-list.component').then(m => m.ExamListComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'exams/:id/take',
+    loadComponent: () => import('./pages/exam-take/exam-take.component').then(m => m.ExamTakeComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'exams/:id/review',
+    loadComponent: () => import('./pages/exam-take/exam-take.component').then(m => m.ExamTakeComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'exam-manage',
+    loadComponent: () => import('./pages/exam-manage/exam-manage.component').then(m => m.ExamManageComponent),
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'TEACHER'] }
   },
   {
     path: 'profile',
