@@ -37,6 +37,18 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'reactions',
+    loadComponent: () => import('./pages/reactions/reactions.component').then(m => m.ReactionsComponent)
+  },
+  {
+    path: 'reactions/:id',
+    loadComponent: () => import('./pages/reaction-detail/reaction-detail.component').then(m => m.ReactionDetailComponent)
+  },
+  {
+    path: 'reactions/:id/lab',
+    loadComponent: () => import('./pages/reaction-lab-detail/reaction-lab-detail.component').then(m => m.ReactionLabDetailComponent)
+  },
+  {
     path: 'profile',
     loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent),
     canActivate: [authGuard]
