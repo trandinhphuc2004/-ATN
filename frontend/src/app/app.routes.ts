@@ -60,6 +60,27 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'ai-questions',
+    loadComponent: () => import('./pages/ai-question-generator/ai-question-generator.component').then(m => m.AiQuestionGeneratorComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'ai-lesson',
+    loadComponent: () => import('./pages/ai-lesson-generator/ai-lesson-generator.component').then(m => m.AiLessonGeneratorComponent),
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'TEACHER'] }
+  },
+  {
+    path: 'ai-reaction-lab',
+    loadComponent: () => import('./pages/ai-reaction-lab/ai-reaction-lab.component').then(m => m.AiReactionLabComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'ai-molecule-viewer',
+    loadComponent: () => import('./pages/ai-molecule-viewer/ai-molecule-viewer.component').then(m => m.AiMoleculeViewerComponent),
+    canActivate: [authGuard]
+  },
+  {
     path: 'recommendations',
     loadComponent: () => import('./pages/recommendations/recommendations.component').then(m => m.RecommendationsComponent),
     canActivate: [authGuard]
