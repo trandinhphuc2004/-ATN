@@ -107,9 +107,27 @@ export const routes: Routes = [
     data: { roles: ['ADMIN', 'TEACHER'] }
   },
   {
+    path: 'teacher-dashboard',
+    loadComponent: () => import('./pages/teacher-dashboard/teacher-dashboard.component').then(m => m.TeacherDashboardComponent),
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'TEACHER'] }
+  },
+  {
     path: 'profile',
     loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent),
     canActivate: [authGuard]
+  },
+  {
+    path: 'admin/users',
+    loadComponent: () => import('./pages/admin-users/admin-users.component').then(m => m.AdminUsersComponent),
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN'] }
+  },
+  {
+    path: 'admin/classes',
+    loadComponent: () => import('./pages/admin-classes/admin-classes.component').then(m => m.AdminClassesComponent),
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN'] }
   },
   { path: '**', redirectTo: '/home' }
 ];
