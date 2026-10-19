@@ -37,6 +37,11 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'quiz',
+    loadComponent: () => import('./pages/quiz/quiz.component').then(m => m.QuizComponent),
+    canActivate: [authGuard]
+  },
+  {
     path: 'reactions',
     loadComponent: () => import('./pages/reactions/reactions.component').then(m => m.ReactionsComponent)
   },
@@ -47,6 +52,16 @@ export const routes: Routes = [
   {
     path: 'reactions/:id/lab',
     loadComponent: () => import('./pages/reaction-lab-detail/reaction-lab-detail.component').then(m => m.ReactionLabDetailComponent)
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'recommendations',
+    loadComponent: () => import('./pages/recommendations/recommendations.component').then(m => m.RecommendationsComponent),
+    canActivate: [authGuard]
   },
   {
     path: 'profile',
